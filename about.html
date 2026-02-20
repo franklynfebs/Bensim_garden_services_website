@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bensim Gardening Services</title>
+    <meta name="description" content="Professional gardening and maintenance services in Greater Manchester.">
+    <meta property="og:title" content="Bensim Gardening Services">
+    <meta property="og:description" content="Professional gardening and maintenance services in Greater Manchester.">
+    <meta property="og:image" content="path/to/image.jpg">
+    <meta property="og:url" content="https://www.bensimgardeningservices.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="Sstyle.css">
+    <style>
+.service-cards-section, .additional-services-section, .about-section, .welcome-section, .info-section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-cards-container, .extra-services-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.service-card, .extra-service-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: calc(50% - 20px);
+    max-width: 300px;
+    position: relative;
+}
+
+.service-card::before, .extra-service-card::before {
+    content: '';
+    display: block;
+    height: 10px;
+    background: linear-gradient(45deg, #6ab04c, #badc58);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.service-card-image, .extra-service-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-card-description, .extra-service-description {
+    padding: 15px;
+}
+
+.service-card-title, .extra-service-title {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.service-card-text, .extra-service-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.additional-services-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.highlight-arrow {
+    color: #ff6347;
+    font-size: 24px;
+}
+
+.about-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.about-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.about-text p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.info-section {
+    margin-top: 40px;
+}
+
+.info-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.follow-us, .faq {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.follow-us h3, .faq h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.follow-us ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.follow-us ul li {
+    margin: 10px 0;
+}
+
+.follow-us ul li a {
+    color: #00702E;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.follow-us ul li:hover a {
+    font-size: 1.3em;
+}
+
+.follow-us ul li a i {
+    margin-right: 10px;
+}
+
+.faq-item {
+    margin-top: 20px;
+}
+
+.faq-item h4 {
+    margin: 0;
+    color: #333;
+}
+
+.faq-item p {
+    color: #666;
+    margin: 5px 0 0 0;
+}
+
+.separator {
+    background-color: #00702E;
+    height: 2px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+    .separator {
+        width: 2px;
+        height: auto;
+        margin: 0 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .separator {
+        height: 2px;
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .service-card, .extra-service-card {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+        <div class="availability-check">
+            <h2>CHECK SERVICE AVAILABILITY</h2>
+            <form id="postcode-form">
+                <label for="postcode" style="font-weight:bold;">Greater Manchester's Postcode:</label>
+                <input type="text" id="postcode" name="postcode">
+                <button type="submit">CHECK</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <div class="navbar-container">
+            <div class="logo-text">
+                <h1>BENSIM</h1>
+                <p style="color:white; font-size: 14px; font-weight: bold;">Gardening Services</p>
+            </div>
+                          <!-- Search bar and results container -->               
+            <input type="text" id="search-bar" placeholder="Search...">
+            <button class="search-icon" onclick="performSearch()">&#128269;</button>
+            <button id="close-results-button" class="hidden">Close Results</button>
+   
+                
+
+            <ul class="nav-buttons">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="contact.html">REACH US</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+      <div id="search-results" class="hidden"></div>
+    </nav>
+    
+    </header>
+    <main style="margin-top:10rem;">
+        <section class="welcome-section">
+            <div class="welcome-container">
+                <p style="color: #00702E; font-weight:bold; font-size:1em;">It is a pleasure to have you here. Please feel free to know more about us.</p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>Bensim Garden Services has been serving the community with professional gardening and maintenance solutions for over 5 years. Our mission is to provide high-quality, reliable services to keep your outdoor spaces looking pristine.</p>
+                    <h2>Our Services</h2>
+                    <p>We offer a wide range of services including gardening maintenance, grass cutting, hedge cutting, tree cutting, fencing, and many more. Our team of experts is dedicated to delivering exceptional results that meet your needs and exceed your expectations.</p>
+                    <h2>Reliability</h2>
+                    <p>Our team is committed to providing reliable and high-quality services you can count on. We understand the importance of maintaining a beautiful and functional outdoor space, and we work diligently to ensure your satisfaction.</p>
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with us for a free quotation and to learn more about how we can help you with your garden needs. We are available via email, phone, and social media. Reach out today to discuss your project and how we can assist you.</p>
+                </div>
+            </div>
+            <center>
+             <button class="learnbtn" onclick="location.href='contact.html';">REACH US</button>
+            </center>
+        </section>
+        <section>
+            <div>
+                <h3  style="margin-left: 5%;">Kindly Contact Us For These Services<span style=" color:#00702E;">------></span></h3>
+            </div>
+        </section>
+        <section class="service-cards-section">
+            <div class="service-cards-container">
+                <div class="service-card">
+                    <img src="Sim_image/imgeight.jpg" alt="Artificial Grass Laying" class="service-card-image">
+                    <div class="service-card-description">
+                        <h3 class="service-card-title">Artificial Grass Laying</h3>
+                        <p class="service-card-text">Transform your garden with our high-quality artificial grass laying services, ensuring a lush, green lawn all year round.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="Sim_image/grasscutting.jpg" alt="Grass Cutting" class="service-card-image">
+                    <div class="service-card-description">
+                        <h3 class="service-card-title">Grass Cutting</h3>
+                        <p class="service-card-text">Professional grass cutting services for a well-manicured lawn.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="Sim_image/treecutting.jpg" alt="Tree Cutting" class="service-card-image">
+                    <div class="service-card-description">
+                        <h3 class="service-card-title">Tree Cutting</h3>
+                        <p class="service-card-text">Safe and efficient tree cutting and removal services.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-container">
+                <div class="follow-us">
+                    <h3>Reach And Follow Us On</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/yourfacebookpage" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://wa.me/07377088442" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="https://www.instagram.com/yourinstagrampage" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="mailto:bensimgerdeningservices.com"><i class="fas fa-envelope"></i> Mail</a></li>
+                    </ul>
+                </div>
+                <div class="separator"></div>
+                <div class="faq">
+    <h3>FAQ'S</h3>
+    <div class="faq-item">
+        <h4>What areas do you serve?</h4>
+        <p>We serve the Greater Manchester area and its surroundings.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Do you offer free quotations?</h4>
+        <p>Yes, we provide free quotations for all our services. Contact us to get yours today.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Are your services insured?</h4>
+        <p>Yes, all our services are fully insured for your peace of mind.</p>
+    </div>
+    <div class="faq-item">
+        <h4>How can I schedule an appointment?</h4>
+        <p>You can schedule an appointment by filling out our contact form, sending us an email, or calling our customer service number.</p>
+    </div>
+    <div class="faq-item">
+        <h4>What payment methods do you accept?</h4>
+        <p>We accept various payment methods including cash, bank transfer.</p>
+    </div>
+</div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>CONTACT DETAILS</h3>
+                <p>General Inquiries WhatsApp: +44 7377 088442</p>
+                <p>Partnerships: bensimgerdeningservices@gmail.com</p>
+                <p>General Inquiries: bensimgerdeningservices@gmail.com</p>
+                <p>Call For Customer Service: +44 7377 088442</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Bensim Gardening Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Sim.js"></script>
