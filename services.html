@@ -14,7 +14,7 @@
     <!-- Open Graph (for social media sharing) -->
     <meta property="og:title" content="Bensim Gardening Services">
     <meta property="og:description" content="Professional gardening and maintenance services in Greater Manchester. Reliable and affordable garden care.">
-    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png"><br>
+    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png">br
     <meta property="og:url" content="https://bensim-garden-services-website.vercel.app/">
     <meta property="og:type" content="website">
 
@@ -129,14 +129,23 @@
 /* New styles for the last four cards */
 .last-four-cards-container {
     overflow: hidden;
-    position: relative;
+    width:100%;
     margin: 0 -0.5rem; /* Adjust margin for smoother edge */
+
+
 }
 
 .slide-container {
-    display: flex;
-    transition: transform 0.3s ease-in-out; /* Smooth transition for sliding */
+  display: flex;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  cursor: grab;
 }
+
+.slide-container:active {
+  cursor: grabbing;
+}
+
 
 .last-four-card {
     flex: 0 0 25%; /* 25% width by default */
@@ -155,6 +164,9 @@
     display: block;
     padding: 1%;
 }
+
+
+
 
 /* Responsive styles for the last four cards */
 @media (max-width: 1200px) {
@@ -379,33 +391,30 @@
             <p>&copy; 2024 Bensim Gardening Services. All rights reserved.</p>
         </div>
     </footer>
+
    <script src="Sim.js"></script>
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const slideContainer = document.querySelector(".slide-container");
+<script> document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".slide-container");
   const cards = document.querySelectorAll(".last-four-card");
 
   let currentIndex = 0;
   let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
   let isDragging = false;
-  let autoSlideInterval;
-
+  let autoSlide;
   const swipeThreshold = 60;
 
-  function getCardWidth() {
+  function cardWidth() {
     return cards[0].offsetWidth;
   }
 
   function setPosition() {
-    slideContainer.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
+    slider.style.transition = "transform 0.4s ease";
+    slider.style.transform = `translateX(-${currentIndex * cardWidth()}px)`;
   }
 
-  // ---------- AUTO SLIDE (non-touch devices) ----------
   function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
+    autoSlide = setInterval(() => {
       if (!isDragging) {
         currentIndex = (currentIndex + 1) % cards.length;
         setPosition();
@@ -413,32 +422,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
-  // ---------- TOUCH EVENTS ----------
-  slideContainer.addEventListener("touchstart", touchStart, { passive: true });
-  slideContainer.addEventListener("touchmove", touchMove, { passive: false });
-  slideContainer.addEventListener("touchend", touchEnd);
+  function stopAutoSlide() {
+    clearInterval(autoSlide);
+  }
 
-  function touchStart(e) {
-    startX = e.touches[0].clientX;
+  // -------- POINTER EVENTS (touch + mouse) --------
+  slider.addEventListener("pointerdown", (e) => {
+    startX = e.clientX;
     isDragging = true;
-    clearInterval(autoSlideInterval);
-  }
+    slider.style.transition = "none";
+    stopAutoSlide();
+  });
 
-  function touchMove(e) {
+  slider.addEventListener("pointermove", (e) => {
     if (!isDragging) return;
-    e.preventDefault(); // stop page scrolling
 
-    const currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
+    const diff = e.clientX - startX;
+    slider.style.transform = `translateX(${diff - currentIndex * cardWidth()}px)`;
+  });
 
-    slideContainer.style.transform = `translateX(${diff - currentIndex * getCardWidth()}px)`;
-  }
-
-  function touchEnd(e) {
+  slider.addEventListener("pointerup", (e) => {
     isDragging = false;
-
-    const endX = e.changedTouches[0].clientX;
-    const diff = endX - startX;
+    const diff = e.clientX - startX;
 
     if (diff > swipeThreshold && currentIndex > 0) {
       currentIndex--;
@@ -447,19 +452,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setPosition();
-  }
+    startAutoSlide();
+  });
 
-  // ---------- RESIZE FIX ----------
+  slider.addEventListener("pointerleave", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    setPosition();
+    startAutoSlide();
+  });
+
   window.addEventListener("resize", setPosition);
 
-  // ---------- TOUCH DETECTION ----------
-  const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-  if (!isTouchDevice) {
-    startAutoSlide();
-  }
+  startAutoSlide();
 });
-
-   </script>
+</script>
 </body>
 </html>
