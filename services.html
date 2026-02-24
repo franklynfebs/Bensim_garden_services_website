@@ -14,7 +14,7 @@
     <!-- Open Graph (for social media sharing) -->
     <meta property="og:title" content="Bensim Gardening Services">
     <meta property="og:description" content="Professional gardening and maintenance services in Greater Manchester. Reliable and affordable garden care.">
-    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png">
+    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png"><br>
     <meta property="og:url" content="https://bensim-garden-services-website.vercel.app/">
     <meta property="og:type" content="website">
 
@@ -382,59 +382,82 @@
    <script src="Sim.js"></script>
 
    <script>
-       //Services last four cards
-document.addEventListener("DOMContentLoaded", function() {
-    const slideContainer = document.querySelector('.slide-container');
-    const cards = document.querySelectorAll('.last-four-card');
-    const cardWidth = cards[0].offsetWidth;
-    const totalCards = cards.length;
-    let currentIndex = 0;
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const slideContainer = document.querySelector(".slide-container");
+  const cards = document.querySelectorAll(".last-four-card");
 
-    // Handle auto-sliding
-    function startAutoSlide() {
-        setInterval(() => {
-            if (!isDragging) {
-                currentIndex = (currentIndex + 1) % totalCards;
-                slideContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            }
-        }, 3000); // Slide every 3 seconds
+  let currentIndex = 0;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let isDragging = false;
+  let autoSlideInterval;
+
+  const swipeThreshold = 60;
+
+  function getCardWidth() {
+    return cards[0].offsetWidth;
+  }
+
+  function setPosition() {
+    slideContainer.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
+  }
+
+  // ---------- AUTO SLIDE (non-touch devices) ----------
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      if (!isDragging) {
+        currentIndex = (currentIndex + 1) % cards.length;
+        setPosition();
+      }
+    }, 3000);
+  }
+
+  // ---------- TOUCH EVENTS ----------
+  slideContainer.addEventListener("touchstart", touchStart, { passive: true });
+  slideContainer.addEventListener("touchmove", touchMove, { passive: false });
+  slideContainer.addEventListener("touchend", touchEnd);
+
+  function touchStart(e) {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    clearInterval(autoSlideInterval);
+  }
+
+  function touchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault(); // stop page scrolling
+
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+
+    slideContainer.style.transform = `translateX(${diff - currentIndex * getCardWidth()}px)`;
+  }
+
+  function touchEnd(e) {
+    isDragging = false;
+
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+
+    if (diff > swipeThreshold && currentIndex > 0) {
+      currentIndex--;
+    } else if (diff < -swipeThreshold && currentIndex < cards.length - 1) {
+      currentIndex++;
     }
 
-    // For touch devices: handle swipe gestures
-    slideContainer.addEventListener('touchstart', startTouch, false);
-    slideContainer.addEventListener('touchmove', moveTouch, false);
-    slideContainer.addEventListener('touchend', endTouch, false);
+    setPosition();
+  }
 
-    function startTouch(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    }
+  // ---------- RESIZE FIX ----------
+  window.addEventListener("resize", setPosition);
 
-    function moveTouch(e) {
-        if (!isDragging) return;
-        currentX = e.touches[0].clientX;
-        const diff = currentX - startX;
-        slideContainer.style.transform = `translateX(${diff - (currentIndex * cardWidth)}px)`;
-    }
+  // ---------- TOUCH DETECTION ----------
+  const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-    function endTouch() {
-        isDragging = false;
-        const diff = currentX - startX;
-        if (diff > 50) {
-            currentIndex = Math.max(currentIndex - 1, 0);
-        } else if (diff < -50) {
-            currentIndex = Math.min(currentIndex + 1, totalCards - 1);
-        }
-        slideContainer.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-
-    // Start auto-sliding only if not a touch device
-    if (!('ontouchstart' in window)) {
-        startAutoSlide();
-    }
+  if (!isTouchDevice) {
+    startAutoSlide();
+  }
 });
 
    </script>
