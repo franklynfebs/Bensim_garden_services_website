@@ -258,6 +258,41 @@ h1 {
         margin-top: 0px;
         width: 50%;
     }
+
+}
+
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Hide on large screens */
+@media (min-width: 1201px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* Tablet screens */
+@media (max-width: 1200px) {
+    .mobile-menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+/* Smaller tablets */
+@media (max-width: 900px) {
+    .mobile-menu-toggle {
+        font-size: 22px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+    .mobile-menu-toggle {
+        font-size: 20px;
+        padding: 8px;
+    }
 }
 
 .availability-check {
