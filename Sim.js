@@ -226,3 +226,10 @@ contentSection.addEventListener('touchend', () => {
         contentSection.classList.remove('swipe-up');
     }
 });
+
+
+const menuToggle = document.getElementById("menuToggle");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+});
