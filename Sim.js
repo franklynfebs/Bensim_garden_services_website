@@ -227,9 +227,19 @@ contentSection.addEventListener('touchend', () => {
     }
 });
 
-
+/*Toggle_btn behavior */
 const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.querySelector(".nav-buttons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+
 
 menuToggle.addEventListener("click", () => {
   menuToggle.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
 });
