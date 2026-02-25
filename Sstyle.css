@@ -279,37 +279,31 @@ h1 {
 
 
 
-
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 999;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}  
+  opacity: 1;
+  pointer-events: all;
+}
 
-
+/*
 @media screen and (max-width: 768px) {
-    .nav-buttons {
+   .nav-buttons {
         display: none;
         flex-direction: column;
-        position: fixed;
-        top: 4rem;
-        left: 0;
-        background-color: #00702E;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        z-index: 1001;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.4s ease-in-out;
+        z-index: 1000;
     }
 
     .navbar-container {
@@ -334,13 +328,48 @@ h1 {
         margin-left: 2rem;
     }
 
-    .slider-container {
-        margin: 0 8%;
-        margin-top: 0px;
-        width: 50%;
-    }
+    
 }
+ 
+*/
 
+@media screen and (max-width: 768px) {
+
+  .nav-buttons {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    height: 100vh;
+    background: #3b2416;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transition: right 0.35s ease;
+    z-index: 2000;   /* higher than navbar */
+  }
+
+  .nav-buttons.show-nav {
+    right: 0;
+  }
+
+  .nav-buttons li {
+    list-style: none;
+  }
+
+  .nav-buttons li a {
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+}
 .availability-check {
     width: 100%;
     background-color: #00702E;
@@ -426,9 +455,7 @@ img {
     right: 0;
 }
 
-.show-nav {
-    display: flex !important;
-}
+
 
 .content-section {
     display: flex;
