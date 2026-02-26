@@ -22,6 +22,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+    <script defer src="Sim.js">
+     //Toggle mobile menu
+
+const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.getElementById("navButtons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navButtons.classList.toggle("show-nav");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
+});
+
+</script>
     <style>
 
         .hidden {
@@ -173,17 +194,29 @@
     .last-four-card {
         flex: 0 0 33.333%;
     }
+
+    .last-four-card {
+       font-size: 1.2em;
+    }
 }
 
 @media (max-width: 900px) {
     .last-four-card {
         flex: 0 0 50%;
     }
+
+     .last-four-card {
+       font-size: 1.2em;
+    }
 }
 
 @media (max-width: 600px) {
     .last-four-card {
         flex: 0 0 100%;
+    }
+
+     .last-four-card {
+       font-size: 1.2em;
     }
 }
 
@@ -391,104 +424,5 @@
             <p>&copy; 2024 Bensim Gardening Services. All rights reserved.</p>
         </div>
     </footer>
-
-   <script src="Sim.js"></script>
-
-<script> document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".slide-container");
-  const cards = document.querySelectorAll(".last-four-card");
-
-  let currentIndex = 0;
-  let startX = 0;
-  let isDragging = false;
-  let autoSlide;
-  const swipeThreshold = 60;
-
-  function cardWidth() {
-    return cards[0].offsetWidth;
-  }
-
-  function setPosition() {
-    slider.style.transition = "transform 0.4s ease";
-    slider.style.transform = `translateX(-${currentIndex * cardWidth()}px)`;
-  }
-
-  function startAutoSlide() {
-    autoSlide = setInterval(() => {
-      if (!isDragging) {
-        currentIndex = (currentIndex + 1) % cards.length;
-        setPosition();
-      }
-    }, 3000);
-  }
-
-  function stopAutoSlide() {
-    clearInterval(autoSlide);
-  }
-
-  // -------- POINTER EVENTS (touch + mouse) --------
-  slider.addEventListener("pointerdown", (e) => {
-    startX = e.clientX;
-    isDragging = true;
-    slider.style.transition = "none";
-    stopAutoSlide();
-  });
-
-  slider.addEventListener("pointermove", (e) => {
-    if (!isDragging) return;
-
-    const diff = e.clientX - startX;
-    slider.style.transform = `translateX(${diff - currentIndex * cardWidth()}px)`;
-  });
-
-  slider.addEventListener("pointerup", (e) => {
-    isDragging = false;
-    const diff = e.clientX - startX;
-
-    if (diff > swipeThreshold && currentIndex > 0) {
-      currentIndex--;
-    } else if (diff < -swipeThreshold && currentIndex < cards.length - 1) {
-      currentIndex++;
-    }
-
-    setPosition();
-    startAutoSlide();
-  });
-
-  slider.addEventListener("pointerleave", () => {
-    if (!isDragging) return;
-    isDragging = false;
-    setPosition();
-    startAutoSlide();
-  });
-
-  window.addEventListener("resize", setPosition);
-
-  startAutoSlide();
-});
-
-</script>
-
-    <script>
-
-        
-//Toggle mobile menu
-
-const menuToggle = document.getElementById("menuToggle");
-const navButtons = document.getElementById("navButtons");
-const menuOverlay = document.getElementById("menuOverlay");
-
-menuToggle.addEventListener("click", () => {
-  menuToggle.classList.toggle("active");
-  navButtons.classList.toggle("show-nav");
-  menuOverlay.classList.toggle("active");
-});
-
-menuOverlay.addEventListener("click", () => {
-  menuToggle.classList.remove("active");
-  navButtons.classList.remove("show-nav");
-  menuOverlay.classList.remove("active");
-});
-    </script>
 </body>
 </html>
