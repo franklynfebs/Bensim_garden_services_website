@@ -201,12 +201,12 @@ h1 {
 }
 
 /* Show only on mobile */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .mobile-menu-toggle {
         display: flex;
         justify-content: center;
         align-items: center;
-        left: -1.5em;
+        right: -1em;
     }
 }
 
