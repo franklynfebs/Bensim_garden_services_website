@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bensim Gardening Services</title>
     <link rel="stylesheet" href="Sstyle.css">i
-         <!-- Google Search Description -->
+    <link rel="shortcut icon" href="favicon/favicon.png">
+    <!-- Google Search Description -->
     <meta name="description" content="Bensim Gardening Services offers professional gardening and maintenance services in Greater Manchester. Reliable, affordable, and eco-friendly solutions.">
 
     <!-- Open Graph (for social media sharing) -->
@@ -201,6 +202,8 @@
 </head>
 <body>
     <header>
+        
+         <div class="menu-overlay" id="menuOverlay"></div>
         <nav class="navbar">
         <div class="availability-check">
             <h2>CHECK SERVICE AVAILABILITY</h2>
@@ -223,21 +226,23 @@
    
                 
 
-            <ul class="nav-buttons">
+             <ul class="nav-buttons" id="navButtons">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="services.html">SERVICES</a></li>
                 <li><a href="contact.html">REACH US</a></li>
-            </ul>
+             </ul>
+
+
             <div class="mobile-menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
+
         </div>
       <div id="search-results" class="hidden"></div>
     </nav>
-    
     </header>
     <main style="margin-top:10rem;">
         <section class="welcome-section">
@@ -358,3 +363,24 @@
     </footer>
 
     <script src="Sim.js"></script>
+        <script>
+
+        
+//Toggle mobile menu
+
+const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.getElementById("navButtons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navButtons.classList.toggle("show-nav");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
+});
+    </script>

@@ -278,7 +278,7 @@ h1 {
 
 
 
-
+/*
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -287,12 +287,12 @@ h1 {
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 1500;
-}
-
+} 
 .menu-overlay.active {
   opacity: 1;
   pointer-events: all;
-}
+}  */
+
 
 /*
 @media screen and (max-width: 768px) {
@@ -339,16 +339,16 @@ h1 {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 75%;
+    width: 70%;
     height: 100vh;
-    background: #3b2416;
+     background: rgba(8, 23, 2, 0.716);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    transition: right 0.35s ease;
-    z-index: 2000;   /* higher than navbar */
+    gap: 2rem;
+    transition: right 0.4s ease;
+    z-index: 1000;
   }
 
   .nav-buttons.show-nav {

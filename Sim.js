@@ -230,7 +230,7 @@ contentSection.addEventListener('touchend', () => {
 //Toggle mobile menu
 
 const menuToggle = document.getElementById("menuToggle");
-const navButtons = document.querySelector(".nav-buttons");
+const navButtons = document.getElementById("navButtons");
 const menuOverlay = document.getElementById("menuOverlay");
 
 menuToggle.addEventListener("click", () => {

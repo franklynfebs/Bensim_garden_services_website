@@ -147,6 +147,8 @@
 </head>
 <body>
     <header>
+        
+         <div class="menu-overlay" id="menuOverlay"></div>
         <nav class="navbar">
         <div class="availability-check">
             <h2>CHECK SERVICE AVAILABILITY</h2>
@@ -169,22 +171,25 @@
    
                 
 
-            <ul class="nav-buttons">
+             <ul class="nav-buttons" id="navButtons">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="services.html">SERVICES</a></li>
                 <li><a href="contact.html">REACH US</a></li>
-            </ul>
-        <div class="mobile-menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-        </div>
+             </ul>
+
+
+            <div class="mobile-menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
       <div id="search-results" class="hidden"></div>
     </nav>
-    
-    </header>    <main style="margin-top:4rem;">
+    </header> 
+      <main style="margin-top:4rem;">
         <section class="contact-section">
             <h1 class="tite">REACH US</h1>
             <div class="contact-container">
@@ -245,5 +250,26 @@
         </div>
     </footer>
 <script src="Sim.js"></script>
+    <script>
+
+        
+//Toggle mobile menu
+
+const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.getElementById("navButtons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navButtons.classList.toggle("show-nav");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
+});
+    </script>
 </body>
 </html>

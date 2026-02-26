@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Sim.js" defer></script>
+      <!-- Ensures correct text display and mobile-friendly layout -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - BENSIM GARDENING SERVICES</title>
     <link rel="stylesheet" type="text/css" href="Sstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,13 +17,11 @@
     <!-- Open Graph (for social media sharing) -->
     <meta property="og:title" content="Bensim Gardening Services">
     <meta property="og:description" content="Professional gardening and maintenance services in Greater Manchester. Reliable and affordable garden care.">
-    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png"><br>
+    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png">
     <meta property="og:url" content="https://bensim-garden-services-website.vercel.app/">
     <meta property="og:type" content="website">
 
-  <!-- Ensures correct text display and mobile-friendly layout -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <style>
 
@@ -128,8 +128,11 @@
 </style>
 </head>
 <body>
-<header>
-    <nav class="navbar">
+
+    <header>
+        
+         <div class="menu-overlay" id="menuOverlay"></div>
+        <nav class="navbar">
         <div class="availability-check">
             <h2>CHECK SERVICE AVAILABILITY</h2>
             <form id="postcode-form">
@@ -144,34 +147,32 @@
                 <h1>BENSIM</h1>
                 <p style="color:white; font-size: 14px; font-weight: bold;">Gardening Services</p>
             </div>
-            <!-- Search bar and results container -->
+                          <!-- Search bar and results container -->               
             <input type="text" id="search-bar" placeholder="Search...">
             <button class="search-icon" onclick="performSearch()">&#128269;</button>
             <button id="close-results-button" class="hidden">Close Results</button>
+   
+                
 
-            <ul class="nav-buttons">
-                 <li><a href="#">Home</a></li>
+             <ul class="nav-buttons" id="navButtons">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="services.html">SERVICES</a></li>
                 <li><a href="contact.html">REACH US</a></li>
-            </ul>
+             </ul>
 
-             <div class="mobile-menu-toggle" id="menuToggle">
+
+            <div class="mobile-menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-        </div>
 
-             <div class="menu-overlay" id="menuOverlay"></div>
-
-            
         </div>
-        <div id="search-results" class="hidden"></div>
+      <div id="search-results" class="hidden"></div>
     </nav>
-</header>
-
     </header>
+
     <main>
         <section style="margin-top: 0px;" class="slider-section">
             <div class="slider-container">
@@ -317,6 +318,27 @@
             <p>&copy; 2024 Bensim Gardening Services. All rights reserved.</p>
         </div>
     </footer>
-    <script src="Sim.js"></script>
+
+    <script>
+
+        
+//Toggle mobile menu
+
+const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.getElementById("navButtons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navButtons.classList.toggle("show-nav");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
+});
+    </script>
 </body>
 </html>
