@@ -197,7 +197,7 @@ h1 {
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(6px);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-    left: -1.5em;
+    
 }
 
 /* Show only on mobile */
@@ -206,6 +206,7 @@ h1 {
         display: flex;
         justify-content: center;
         align-items: center;
+        left: -1.5em;
     }
 }
 
