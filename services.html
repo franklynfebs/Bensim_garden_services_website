@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Bensim Garden Services</title>
+    <link rel="stylesheet" type="text/css" href="Sstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="favicon/favicon.png">
+
+        <!-- Google Search Description -->
+    <meta name="description" content="Bensim Gardening Services offers professional gardening and maintenance services in Greater Manchester. Reliable, affordable, and eco-friendly solutions.">
+
+    <!-- Open Graph (for social media sharing) -->
+    <meta property="og:title" content="Bensim Gardening Services">
+    <meta property="og:description" content="Professional gardening and maintenance services in Greater Manchester. Reliable and affordable garden care.">
+    <meta property="og:image" content="https://bensim-garden-services-website.vercel.app/sim_image/slide.png">br
+    <meta property="og:url" content="https://bensim-garden-services-website.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Ensures correct text display and mobile-friendly layout -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script defer src="Sim.js">
+     //Toggle mobile menu
+
+const menuToggle = document.getElementById("menuToggle");
+const navButtons = document.getElementById("navButtons");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navButtons.classList.toggle("show-nav");
+  menuOverlay.classList.toggle("active");
+});
+
+menuOverlay.addEventListener("click", () => {
+  menuToggle.classList.remove("active");
+  navButtons.classList.remove("show-nav");
+  menuOverlay.classList.remove("active");
+});
+
+</script>
+    <style>
+
+        .hidden {
+    display: none;
+}
+
+#close-results-button {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.services-section {
+    background-color: whitesmoke;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+  
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.card img {
+    width: 100%;
+    height: 60%;
+    display: block;
+    padding: 1%;
+}
+
+.card-description {
+    width: 100%;
+    text-align: left;
+    padding: 1em;
+}
+
+.card-description-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.card-description-text {
+    margin-bottom: 1rem;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.animated-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: #f0f0f0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links a {
+    color: #00702E;
+    font-size: 1.5rem;
+}
+
+/* Container wrapper */
+.last-four-cards-container {
+    overflow: hidden;
+    width: 100%;
+    margin: 0 -0.5rem;
+}
+
+/* Slider */
+.slide-container {
+    display: flex;
+    transition: transform 0.7s ease;
+    touch-action: pan-y; /* Allow vertical scroll, control horizontal swipe */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    will-change: transform;
+}
+
+/* Grabbing effect (Desktop only) */
+.slide-container:active {
+    cursor: grabbing;
+}
+
+/* Individual cards */
+.last-four-card {
+    flex: 0 0 25%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    margin: 0 0.5rem;
+    margin-bottom: 2%;
+}
+
+/* Images inside card */
+.last-four-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 1%;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 1200px) {
+    .last-four-card {
+        flex: 0 0 33.333%;
+    }
+
+    .last-four-card {
+       font-size: 1.2em;
+    }
+}
+
+@media (max-width: 900px) {
+    .last-four-card {
+        flex: 0 0 50%;
+    }
+
+     .last-four-card {
+       font-size: 1.2em;
+    }
+}
+
+@media (max-width: 600px) {
+    .last-four-card {
+        flex: 0 0 100%;
+    }
+
+     .last-four-card {
+       font-size: 1.2em;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        
+         <div class="menu-overlay" id="menuOverlay"></div>
+        <nav class="navbar">
+        <div class="availability-check">
+            <h2>CHECK SERVICE AVAILABILITY</h2>
+            <form id="postcode-form">
+                <label for="postcode" style="font-weight:bold;">Greater Manchester's Postcode:</label>
+                <input type="text" id="postcode" name="postcode">
+                <button type="submit">CHECK</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <div class="navbar-container">
+            <div class="logo-text">
+                <h1>BENSIM</h1>
+                <p style="color:white; font-size: 14px; font-weight: bold;">Gardening Services</p>
+            </div>
+                          <!-- Search bar and results container -->               
+            <input type= "text" id="search-bar" placeholder="Search...">
+            <button class="search-icon" onclick="performSearch()">&#128269;</button>
+            <button id="close-results-button" class="hidden">Close Results</button>
+   
+                
+
+             <ul class="nav-buttons" id="navButtons">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="contact.html">REACH US</a></li>
+             </ul>
+
+
+            <div class="mobile-menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+      <div id="search-results" class="hidden"></div>
+    </nav>
+    </header>
+    <main>
+  <section class="services-section">
+    <div class="services-container">
+        <h2 style="margin-top: 8rem;">Our Services</h2>
+
+        <div class="cards-container">
+
+            <!-- Artificial Grass -->
+            <div class="card">
+                <img src="sim_image/imgeight.jpg" alt="Artificial Grass Laying">
+                <div class="card-description">
+                    <span class="card-description-title">Artificial Grass Laying</span>
+                    <p class="card-description-text">
+                        Transform your garden with our high-quality artificial grass laying services,
+                        ensuring a lush, green lawn all year round.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Block Paving -->
+            <div class="card">
+                <img src="sim_image/blockpaving.jpeg" alt="Block Paving">
+                <div class="card-description">
+                    <span class="card-description-title">Block Paving</span>
+                    <p class="card-description-text">
+                        Enhance your outdoor spaces with durable and stylish block paving solutions
+                        tailored to your needs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Laminate Flooring -->
+            <div class="card">
+                <img src="sim_image/laminateflooring.jpg" alt="Laminate Flooring">
+                <div class="card-description">
+                    <span class="card-description-title">Laminate Flooring</span>
+                    <p class="card-description-text">
+                        Expert installation of laminate flooring to give your interiors
+                        a sleek and modern finish.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tiling -->
+            <div class="card">
+                <img src="sim_image/tiling.jpeg" alt="Tiling">
+                <div class="card-description">
+                    <span class="card-description-title">Tiling</span>
+                    <p class="card-description-text">
+                        High-quality tiling services for both indoor and outdoor spaces,
+                        adding a touch of elegance to your property.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Hedge Cutting -->
+            <div class="card">
+                <img src="sim_image/hedgecutting.jpg" alt="Hedge Cutting">
+                <div class="card-description">
+                    <span class="card-description-title">Hedge Cutting</span>
+                    <p class="card-description-text">
+                        Keep your hedges neat and well-maintained with our professional
+                        hedge cutting services.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Decking -->
+            <div class="card">
+                <img src="sim_image/decking.jpg" alt="Decking">
+                <div class="card-description">
+                    <span class="card-description-title">Decking</span>
+                    <p class="card-description-text">
+                        Beautiful and durable decking solutions to create the perfect
+                        outdoor living space.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+            <div>
+                <p style="margin-top: 7%; margin-left:5%; margin-bottom: 2%; font-weight:bold;">We Also Offer These Services <span style="color:#00702E;">--------></span></p>
+            </div>
+            <div class="last-four-cards-container">
+                <div class="slide-container">
+                    <div class="last-four-card">
+                        <div class="animated-card">Tree Cutting</div>
+                        <div class="card-description">
+                            <span class="card-description-title">Tree Cutting</span>
+                            <p class="card-description-text">Professional tree cutting services to safely and efficiently manage tree growth and removal.</p>
+                        </div>
+                    </div>
+                    <div class="last-four-card">
+                        <div class="animated-card">Grass Cutting</div>
+                        <div class="card-description">
+                            <span class="card-description-title">Grass Cutting</span>
+                            <p class="card-description-text">Regular grass cutting services to keep your lawn looking neat and tidy.</p>
+                        </div>
+                    </div>
+                    <div class="last-four-card">
+                        <div class="animated-card">Removals</div>
+                        <div class="card-description">
+                            <span class="card-description-title">Removals</span>
+                            <p class="card-description-text">Efficient and reliable removal services to help you clear out unwanted items.</p>
+                        </div>
+                    </div>
+                    <div class="last-four-card">
+                        <div class="animated-card">Flagging & Plastering</div>
+                        <div class="card-description">
+                            <span class="card-description-title">Flagging & Plastering</span>
+                            <p class="card-description-text">Reliable flagging and plastering services to enhance the structure and appearance of your spaces.</p>
+                        </div>
+                    </div>
+                    <div class="last-four-card">
+                        <div class="animated-card">Skimming</div>
+                        <div class="card-description">
+                            <span class="card-description-title">Skimming</span>
+                            <p class="card-description-text">Professional skimming services to achieve smooth and flawless walls and ceilings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+           <div>
+               <ul class="social-links">
+                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://wa.me/+447377088442?text=Hello%20I%20found%20your%20website%20and%20would%20like%20to%20contact%20you" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+               </ul>
+           </div> 
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>CONTACT DETAILS</h3>
+                <p>General Inquiries WhatsApp: +44 7377 088442</p>
+                <p>Partnerships: bensimgerdeningservices@gmail.com</p>
+                <p>General Inquiries: bensimgerdeningservices@gmail.com</p>
+                <p>Call For Customer Service: +44 7377 088442</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2024 Bensim Gardening Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
